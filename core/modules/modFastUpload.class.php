@@ -61,7 +61,7 @@ class modFastUpload extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = "Description of module FastUpload";
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
-		$this->version = '1.0';
+		$this->version = '1.0.0';
 		// Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		// Where to store the module in setup page (0=common,1=interface,2=others,3=very specific)
@@ -90,11 +90,15 @@ class modFastUpload extends DolibarrModules
 		//							'dir' => array('output' => 'othermodulename'),      // To force the default directories names
 		//							'workflow' => array('WORKFLOW_MODULE1_YOURACTIONTYPE_MODULE2'=>array('enabled'=>'! empty($conf->module1->enabled) && ! empty($conf->module2->enabled)', 'picto'=>'yourpicto@fastupload')) // Set here all workflow context managed by module
 		//                        );
-		$this->module_parts = array();
+		$this->module_parts = array(
+			'hooks' => array('formfile')
+			,'css' => array('/fastupload/css/dropzone.css')
+			,'js' => array('/fastupload/js/dropzone.js', '/fastupload/js/fastupload.js.php')
+		);
 
 		// Data directories to create when module is enabled.
 		// Example: this->dirs = array("/fastupload/temp");
-		$this->dirs = array();
+		$this->dirs = array("/fastupload/temp");
 
 		// Config pages. Put here list of php page, stored into fastupload/admin directory, to use to setup module.
 		$this->config_page_url = array("fastupload_setup.php@fastupload");
