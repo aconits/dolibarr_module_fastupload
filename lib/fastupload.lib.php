@@ -78,28 +78,3 @@ function fastupload_prepare_head(TFastUpload $object)
 	
 	return $head;
 }
-
-function getFormConfirm(&$PDOdb, &$form, &$object, $action)
-{
-    global $langs,$conf,$user;
-
-    $formconfirm = '';
-
-    if ($action == 'validate' && !empty($user->rights->fastupload->write))
-    {
-        $text = $langs->trans('ConfirmValidateFastUpload', $object->ref);
-        $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('ValidateFastUpload'), $text, 'confirm_validate', '', 0, 1);
-    }
-    elseif ($action == 'delete' && !empty($user->rights->fastupload->write))
-    {
-        $text = $langs->trans('ConfirmDeleteFastUpload');
-        $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('DeleteFastUpload'), $text, 'confirm_delete', '', 0, 1);
-    }
-    elseif ($action == 'clone' && !empty($user->rights->fastupload->write))
-    {
-        $text = $langs->trans('ConfirmCloneFastUpload', $object->ref);
-        $formconfirm = $form->formconfirm($_SERVER['PHP_SELF'] . '?id=' . $object->id, $langs->trans('CloneFastUpload'), $text, 'confirm_clone', '', 0, 1);
-    }
-
-    return $formconfirm;
-}
