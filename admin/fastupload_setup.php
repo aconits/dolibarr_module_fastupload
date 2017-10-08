@@ -33,7 +33,8 @@ require_once DOL_DOCUMENT_ROOT . "/core/lib/admin.lib.php";
 require_once '../lib/fastupload.lib.php';
 
 // Translations
-$langs->load("fastupload@fastupload");
+$langs->load('admin');
+$langs->load('fastupload@fastupload');
 
 // Access control
 if (! $user->admin) {
