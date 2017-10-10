@@ -20,7 +20,7 @@ if ($max > 0)
 }
 
 ?>
-
+//<script type="text/javascript">
 $(document).ready( function() {
 	Dropzone.autoDiscover = false;
 	
@@ -39,7 +39,19 @@ $(document).ready( function() {
 				previewsContainer: "#" + classPrefix + "-previews-box",
 				uploadMultiple: <?php echo (float) DOL_VERSION < 4.0 ? 'false' : 'true'; ?>,
 				parallelUploads: 100,
-				previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress progress-small progress-striped active\"><div class=\"progress-bar progress-bar-success\" data-dz-uploadprogress></div></div>\n  <div class=\"dz-success-mark\"><span></span></div>\n  <div class=\"dz-error-mark\"><span></span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>",
+				previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  \n\
+										<div class=\"dz-details\">\n\n\
+											<div class=\"dz-filename\">\n\
+												<span data-dz-name></span>\n\
+											</div>\n\n\
+											<div class=\"dz-size\" data-dz-size></div>\n\n\
+											<img data-dz-thumbnail />\n\n\
+										</div>\n\n\
+										<div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n\
+										<div class=\"dz-success-mark\"><span></span></div>\n\n\
+										<div class=\"dz-error-mark\"><span></span></div>\n\n\
+										<div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n\n\
+									</div>",
 				maxFilesize: <?php echo $max_file_size; ?>,
 				maxFiles: <?php echo !empty($conf->global->FASTUPLOAD_LIMIT_FILE_NUMBER) ? $conf->global->FASTUPLOAD_LIMIT_FILE_NUMBER : 50; ?>,
 				dictDefaultMessage: "<?php echo addslashes($langs->transnoentities('FastUpload_DefaultMessage')); ?>",
@@ -87,6 +99,7 @@ $(document).ready( function() {
 		} catch (e) {
 			alert("<?php echo addslashes($langs->transnoentities('FastUpload_DropzoneNotSupported')); ?>");
 		}
-	}
+	};
 	
 });
+//</scrip>
